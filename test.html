@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Kochi&display=swap">
+    <title>Test</title>
+    
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .main-title h1 {
+            text-align: center;
+            display: block;
+            width: 100%;
+            margin: 0 auto;
+            word-break: keep-all; /* Ayuda a que no rompa palabras a la mitad */
+        }
+
+        .contenedor-cartas {
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 20px;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        /* Estilos de cada Carta */
+        .carta {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden; 
+            width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .carta:hover {
+            transform: translateY(-5px); 
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .carta img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .contenido-carta {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contenido-carta h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #333;
+            text-transform: capitalize;
+        }
+
+        .contenido-carta p {
+            font-size: 0.9em;
+            line-height: 1.6;
+            color: #666;
+            flex-grow: 1;
+        }
+
+        .boton-carta {
+            display: block;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: auto;
+            transition: background-color 0.3s ease;
+        }
+
+        .boton-carta:hover {
+            background-color: #0056b3;
+        }
+        .contenido-carta p{
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #666;
+            flex-grow: 1;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            }
+        
+        @media (max-width: 768px) {
+            .carta {
+                width: calc(50% - 20px);
+            }
+        }
+        #animacion-titulo .word {
+            display: inline-block; 
+            white-space: normal;
+        }
+        #animacion-titulo .letter {
+            display: inline-block;
+        }
+        .main-title {
+            overflow: hidden;     
+            padding: 0 10px;       
+        }
+        @media (max-width: 480px) {
+            .carta {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+        /* vista de tablet*/
+        @media (max-width: 768px) {
+            .carta {
+                width: calc(45% - 10px);
+            }
+        }
+
+        /* vista de teléfono*/
+        @media (max-width: 480px) {
+            body {
+                padding: 10px; 
+            }
+            .main-title h1 {
+                font-size: 24px !important; 
+            }
+            .carta {
+                width: 100%; 
+                max-width: none; 
+            }
+            .contenedor-cartas {
+                gap: 15px; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="main-title" id="letter">
+    <h1 id="animacion-titulo">
+        <span class="letters">¡Proporcionamos repuestos!</span>
+    </h1>
+</section>
+<section>
+        <div class="contenedor-cartas">
+            <div class="carta">
+                <img src="/imagenes/repuesto 1.jpg" alt="ejemplo">
+                <div class="contenido-carta">
+                    <h2>repuestos</h2>
+                    <p>Ejemplo</p>
+                    <a href="#" class="boton-carta">Ver Detalles</a>
+                </div>
+            </div>
+
+            <div class="carta">
+                <img src="/imagenes/repuesto 2.avif" alt="ejemplo">
+                <div class="contenido-carta">
+                    <h2>Repuestos</h2>
+                    <p>Ejemplo</p>
+                    <a href="#" class="boton-carta">Ver Detalles</a>
+                </div>
+            </div>
+
+            <div class="carta">
+                <img src="/imagenes/repuesto 3.png" alt="Equipos de bombeo">
+                <div class="contenido-carta">
+                    <h2>Repuestos</h2>
+                    <p>Ejemplo</p>
+                    <a href="#" class="boton-carta">Ver Detalles</a>
+                </div>
+            </div>
+        </div> 
+    </section> 
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script> 
+const titulo = document.querySelector('#animacion-titulo .letters');
+const palabras = titulo.textContent.split(' '); // Separamos por espacios
+
+titulo.innerHTML = palabras.map(palabra => {
+    const letras = palabra.replace(/\S/g, "<span class='letter' style='display:inline-block;'>$&</span>");
+    return `<span class='word'>${letras}</span>`;
+    }) .join ('');
+anime.timeline({loop: false})
+  .add({
+    targets: '#animacion-titulo .letter',
+    translateY: [40, 0],    
+    opacity: [0, 1],        
+    easing: "easeOutExpo",
+    duration: 1000,
+    delay: (el, i) => 30 * i 
+  });
+    </script>
+</html>
