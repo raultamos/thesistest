@@ -55,6 +55,7 @@
         }
 
         .contenido-carta {
+            text-align: center;
             padding: 20px;
             flex-grow: 1;
             display: flex;
@@ -147,7 +148,6 @@
     </style>
 </head>
 <body>
-
     <section class="main-title" id="letter">
     <h1 id="animacion-titulo">
         <span class="letters">¡Proporcionamos repuestos!</span>
@@ -174,7 +174,7 @@
             </div>
 
             <div class="carta">
-                <img src="imagenes/repuesto 3.png" alt="Equipos de bombeo">
+                <img src="imagenes/repuesto 3.png" alt="ejemplo">
                 <div class="contenido-carta">
                     <h2>Repuestos</h2>
                     <p>Ejemplo</p>
@@ -187,12 +187,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script> 
 const titulo = document.querySelector('#animacion-titulo .letters');
-const palabras = titulo.textContent.split(' '); // Separamos por espacios
+const palabras = titulo.textContent.split(' ');
 
 titulo.innerHTML = palabras.map(palabra => {
     const letras = palabra.replace(/\S/g, "<span class='letter' style='display:inline-block;'>$&</span>");
     return `<span class='word'>${letras}</span>`;
-    }) .join ('');
+    }) .join (' ');
 anime.timeline({loop: false})
   .add({
     targets: '#animacion-titulo .letter',
